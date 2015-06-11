@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> MOvies information</title>
+   <script type="text/javascript">
+ 
+  //}
+ 
+var url = ["http://www.omdbapi.com/?t=athadu", "http://www.omdbapi.com/?t=transformer","http://www.omdbapi.com/?t=kick","http://www.omdbapi.com/?t=avengers","http://www.omdbapi.com/?t=legend","http://www.omdbapi.com/?t=ironman" ];
+ 
+var film = url.length;
+
+for(var i = 0;i < url.length; i++){
+ loadData(url[i]);
+}
+function loadData(input){
+xmlhttp = new XMLHttpRequest();
+
+xmlhttp.onreadystatechange = function()
+  {
+
+   if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
+    {
+      
+      var myArr = JSON.parse(xmlhttp.responseText);
+  
+      myFunction(myArr);
+    
+    }
+    
+  }
+  xmlhttp.open("GET",input,true);
+    xmlhttp.send(null);
+
+}
+
+function myFunction(myArr){
+
+var out =" ";
+
+ out = '<tr><td>' + myArr.Title + '</td>'+ '<td>' + myArr.Released + '</td>'+ '<td>' + myArr.Director + '</td></tr>';
+document.getElementById("hindi").innerHTML += out;
+
+
+}
+
+
+
+</script>
+</head>
+
+<body>
+<table id="hindi" border="1" style="width:100%">
+  <tr>
+    <th>movies name</th>
+    <th> released year</th>
+    <th>director</th>
+  </tr>
+ 
+</table>
+</body>
+</html>
+
